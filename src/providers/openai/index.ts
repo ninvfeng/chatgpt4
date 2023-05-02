@@ -7,6 +7,12 @@ import {
 import type { Provider } from '@/types/provider'
 
 const providerOpenAI = () => {
+  let authToken = ''
+
+  // 使用 localStorage 的代码
+  if (typeof window !== 'undefined' && typeof localStorage !== 'undefined')
+    authToken = localStorage.getItem('token') as string
+
   const provider: Provider = {
     id: 'provider-openai',
     icon: 'i-simple-icons-openai', // @unocss-include
@@ -60,8 +66,7 @@ const providerOpenAI = () => {
         name: '认证信息',
         type: 'api-key',
         description: '认证信息,无需修改',
-        default: 'asdfasdf',
-        // default: localStorage.getItem('token') as string,
+        default: authToken,
       },
       // {
       //   key: 'top_p',
