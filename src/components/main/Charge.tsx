@@ -35,7 +35,8 @@ export default (props: Props) => {
     const responseJson = await response.json()
     if (responseJson.code === 200) {
       alert(responseJson.data.msg)
-      props.setUser(responseJson.data)
+      localStorage.setItem('user', JSON.stringify(responseJson.data))
+      // props.setUser(responseJson.data)
       setShowCharge(false)
     } else {
       alert(responseJson.message)

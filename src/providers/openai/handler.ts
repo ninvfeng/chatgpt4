@@ -14,7 +14,7 @@ export const handleContinuousPrompt: Provider['handleContinuousPrompt'] = async(
 export const handleImagePrompt: Provider['handleImagePrompt'] = async(prompt, payload) => {
   const response = await fetchImageGeneration({
     apiKey: payload.globalSettings.apiKey as string,
-    baseUrl: (payload.globalSettings.baseUrl as string).trim().replace(/\/$/, ''),
+    baseUrl: '',
     body: {
       prompt,
       n: 1,
@@ -80,7 +80,7 @@ const handleChatCompletion = async(messages: Message[], payload: HandlerPayload,
 
   const response = await fetchChatCompletion({
     apiKey: payload.globalSettings.apiKey as string,
-    baseUrl: (payload.globalSettings.baseUrl as string).trim().replace(/\/$/, ''),
+    baseUrl: '',
     body: {
       model: payload.globalSettings.model as string,
       messages,
