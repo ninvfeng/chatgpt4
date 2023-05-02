@@ -60,7 +60,8 @@ const providerOpenAI = () => {
         name: '认证信息',
         type: 'api-key',
         description: '认证信息,无需修改',
-        default: localStorage.getItem('token') as string,
+        default: 'asdfasdf',
+        // default: localStorage.getItem('token') as string,
       },
       // {
       //   key: 'top_p',
