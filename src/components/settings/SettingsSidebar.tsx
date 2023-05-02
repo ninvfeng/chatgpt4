@@ -16,13 +16,14 @@ export default () => {
   return (
     <div class="h-full flex flex-col bg-sidebar">
       <header class="h-14 fi border-b border-base px-4 text-xs uppercase">
-        Settings
+        设置
       </header>
       <main class="flex-1 overflow-auto">
         <AppGeneralSettings
           settingsValue={() => generalSettings()}
           updateSettings={updateGeneralSettings}
         />
+
         <For each={platformSettingsUIList}>
           {item => (
             <ProviderGlobalSettings

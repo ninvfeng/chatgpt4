@@ -10,7 +10,7 @@ export default () => {
   return (
     <div class="h-full flex flex-col bg-sidebar">
       <div class="h-14 fi border-b border-base px-4 text-xs uppercase pl-6">
-        Conversations
+        对话列表
       </div>
       <div class="flex-1 overflow-auto">
         <For each={$conversationMapSortList()}>

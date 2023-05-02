@@ -13,19 +13,19 @@ import type { ConversationType } from '@/types/conversation'
 const typeSelectList = [
   {
     value: 'continuous' as const,
-    label: 'Continuous Conversation',
+    label: '连续对话 (可理解上下文,消耗多)',
     icon: 'i-carbon-edt-loop',
   },
   {
     value: 'single' as const,
-    label: 'Single Conversation',
+    label: '单次对话 (消耗少,不理解上下文)',
     icon: 'i-carbon-connect',
   },
-  {
-    value: 'image' as const,
-    label: 'Image Generation',
-    icon: 'i-carbon-image',
-  },
+  // {
+  //   value: 'image' as const,
+  //   label: 'SD绘画',
+  //   icon: 'i-carbon-image',
+  // },
 ]
 const iconList = [
   'i-carbon-chat',
@@ -95,13 +95,13 @@ export default () => {
   return (
     <div class="p-6">
       <header class="mb-4">
-        <h1 class="font-bold">Edit Conversation</h1>
+        <h1 class="font-bold">修改对话</h1>
       </header>
       <main class="flex flex-col gap-3">
         <input
           ref={inputRef!}
           type="text"
-          placeholder="Untitled"
+          placeholder="未命名"
           class="w-full bg-transparent border border-base px-2 py-1 input-base focus:border-darker"
         />
         <Select

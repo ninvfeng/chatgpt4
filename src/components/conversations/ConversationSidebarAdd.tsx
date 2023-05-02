@@ -15,7 +15,7 @@ export default () => {
       <div class="w-8 h-8 flex items-center justify-center op-60">
         <div class="i-carbon-add text-2xl" />
       </div>
-      <div class="op-60">New Conversation</div>
+      <div class="op-60">新对话</div>
     </div>
   )
 }

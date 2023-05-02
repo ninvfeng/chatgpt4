@@ -9,4 +9,13 @@ export interface ErrorMessage {
   message: string
 }
 
+export interface User {
+  id: number
+  email: string
+  nickname: string
+  times: number
+  token: string
+  word: number
+}
+
 export type ChatType = 'single' | 'continuous' | 'image'

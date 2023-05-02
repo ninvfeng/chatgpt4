@@ -12,17 +12,14 @@ export const generateRapidProviderPayload = (prompt: string, providerId: string)
     prompt,
     historyMessages: [],
   } as CallProviderPayload
+  payload.globalSettings.model = 'gpt-3.5-turbo'
   return payload
 }
 
 export const promptHelper = {
   summarizeText: (text: string) => {
     return [
-      'Summarize a short and relevant title of input with no more than 5 words.',
-      'Rules:',
-      '1. Must use the same language as input.',
-      '2. Output the title directly, do not add any other content.',
-      'The input is:',
+      '用少于10个字总结一个简短且相关的输入标题,直接输出标题，不要添加任何其他内容,输入为:',
       text,
     ].join('\n')
   },
