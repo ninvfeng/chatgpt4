@@ -6,7 +6,7 @@ export interface OpenAIFetchPayload {
 }
 
 const apiKey = import.meta.env.OPENAI_API_KEY
-const baseUrl = ((import.meta.env.OPENAI_API_BASE_URL) || 'https://api.openai.com').trim().replace(/\/$/, '')
+const baseUrl = 'https://api.openai.com'
 
 export const fetchChatCompletion = async(payload: OpenAIFetchPayload) => {
   const initOptions = {
