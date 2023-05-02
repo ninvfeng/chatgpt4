@@ -95,7 +95,7 @@ export default () => {
   return (
     <div class="p-6">
       <header class="mb-4">
-        <h1 class="font-bold">修改对话</h1>
+        <h1 class="font-bold">对话</h1>
       </header>
       <main class="flex flex-col gap-3">
         <input
@@ -142,7 +142,7 @@ export default () => {
           </For>
         </div>
       </main>
-      <div class="fcc px-2 py-2 bg-darker border border-base mt-4 hv-base hover:border-darker" onClick={handleAdd}>Save</div>
+      <div class="fcc px-2 py-2 bg-darker border border-base mt-4 hv-base hover:border-darker" onClick={handleAdd}>保存</div>
     </div>
   )
 }
