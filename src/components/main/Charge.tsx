@@ -115,14 +115,14 @@ export default (props: Props) => {
               请选择充值金额, GPT4按字数计费(注意!不是次数)
             </span>
             <div class="flex space-x-2 text-sm">
-              <button onClick={() => { getPaycode(1) }} class="w-1/3 h-12 mt-2 px-4 py-2 bg-slate bg-op-15 hover:bg-op-20 rounded-sm">
-                1元<br />1000字
-              </button>
               <button onClick={() => { getPaycode(5) }} class="w-1/3 h-12 mt-2 px-4 py-2 bg-slate bg-op-15 hover:bg-op-20 rounded-sm">
-                5元<br />5300字
+                5元<br />5000字
               </button>
               <button onClick={() => { getPaycode(10) }} class="w-1/3 h-12 mt-2 px-4 py-2 bg-slate bg-op-15 hover:bg-op-20 rounded-sm">
                 10元<br />10500字
+              </button>
+              <button onClick={() => { getPaycode(20) }} class="w-1/3 h-12 mt-2 px-4 py-2 bg-slate bg-op-15 hover:bg-op-20 rounded-sm">
+                20元<br />22000字
               </button>
             </div>
           </Show>
