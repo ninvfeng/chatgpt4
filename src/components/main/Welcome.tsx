@@ -47,12 +47,15 @@ export default (props: Props) => {
   })
 
   return (
-    <div class="fcc h-full">
-      <div class="flex flex-col gap-4 w-full max-w-md mx-12 sm:mx-18 overflow-hidden">
+    <div class="flex h-full pt-10">
+      <div class="flex flex-col w-full max-w-md mx-12 sm:mx-18 overflow-hidden space-y-2">
 
         <Show when={!props.isLogin()}>
-          <p mt-1 op-60>欢迎来到人工智能时代</p>
-          <p mt-1 op-60>验证邮箱开始使用</p>
+          <div class="fi">
+            <span class="text-(2xl transparent) font-extrabold bg-(clip-text gradient-to-r) from-sky-400 to-emerald-600">ChatGPT 4.0</span>
+          </div>
+          <div mt-1 op-60>欢迎来到人工智能时代</div>
+          <div op-60>验证邮箱开始使用</div>
           <Login
             setIsLogin={props.setIsLogin}
             setUser={props.setUser}
@@ -64,6 +67,7 @@ export default (props: Props) => {
             setUser={props.setUser}
             user={props.user}
           />
+          <a href="https://z0mjw1ejzdy.feishu.cn/docx/SO7Td80Tvo302JxogJkcnFL6n6b" target="_blank" class="fi gap-2 h-8 text-sm op-60" rel="noreferrer">查看使用说明</a>
           <div class="px-6 py-4 bg-base-100 border border-base rounded-lg">
             <h2 class="text-xs op-30 uppercase my-2">最近对话</h2>
             <div class="flex flex-col items-start">
