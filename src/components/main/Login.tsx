@@ -29,6 +29,9 @@ export default (props: Props) => {
       localStorage.setItem('user', JSON.stringify(responseJson.data))
       props.setIsLogin(true)
       props.setUser(responseJson.data)
+      setTimeout(() => {
+        location.reload()
+      }, 1000)
     } else {
       alert(responseJson.message)
     }
