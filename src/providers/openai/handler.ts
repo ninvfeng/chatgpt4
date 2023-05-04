@@ -46,7 +46,7 @@ export const handleRapidPrompt: Provider['handleRapidPrompt'] = async(prompt, gl
     systemRole: '',
     mockMessages: [],
   } as HandlerPayload
-  const result = await handleChatCompletion([{ role: 'user', content: prompt }], rapidPromptPayload)
+  const result = await handleChatCompletion([{ role: 'user', content: prompt.substring(0, 100) }], rapidPromptPayload)
   if (typeof result === 'string')
     return result
   return ''
