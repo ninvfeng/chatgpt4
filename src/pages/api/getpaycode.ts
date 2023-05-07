@@ -14,6 +14,7 @@ export const post: APIRoute = async(context) => {
     method: 'post',
     body: JSON.stringify({
       price,
+      wallet_type: 'word',
       app_key: import.meta.env.APP_KEY,
     }),
   })
