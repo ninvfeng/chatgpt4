@@ -12,7 +12,6 @@ export const generateRapidProviderPayload = (prompt: string, providerId: string)
     prompt,
     historyMessages: [],
   } as CallProviderPayload
-  payload.globalSettings.model = 'gpt-3.5-turbo'
   return payload
 }
 
