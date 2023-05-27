@@ -50,6 +50,9 @@ export default (props: Props) => {
             user={props.user}
           />
         </div>
+        <div class="px-6 text-gray-500 text-xs my-2">
+          注意:连续对话字数消耗很快 (建议每次都开新对话)
+        </div>
         <For each={props.messages()}>
           {(message, index) => (
             <div class="border-b border-lighter">
