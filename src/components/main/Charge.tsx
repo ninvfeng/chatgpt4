@@ -134,9 +134,9 @@ export default (props: Props) => {
         <div class="mt-4">
           <Show when={!url()}>
             <span class="text-sm">
-              请选择充值金额, GPT4按字数计费(注意!不是次数)
+              请选择充值金额,GPT4按字数计费
             </span>
-            <div class="flex space-x-2">
+            <div class="flex space-x-2 text-xs">
               <Index each={payinfo()}>
                 {(v, _) => (
                   <button onClick={() => { getPaycode(v().price) }} class="w-1/3 h-12 mt-2 px-4 py-2 bg-slate bg-op-15 hover:bg-op-20 rounded-sm">
@@ -151,19 +151,22 @@ export default (props: Props) => {
               请在{countdown()}秒内完成支付
             </span>
             <img class="w-1/3 mt-2" src={url()} />
+            <div class="text-sm mt-2">
+              付款后长时间未到账? 可在支付宝-我的-账单-联系收款方 中给我发送订单号
+            </div>
           </Show>
         </div>
 
         <hr class="mt-4" />
         <div class="flex mt-4">
           <span class="text-sm">
-            有兑换码? 请在下方输入次数兑换码
+            有兑换码? 可在下方输入字数兑换码
           </span>
         </div>
 
         <input
           ref={emailRef!}
-          placeholder="请输入次数兑换码"
+          placeholder="请输入字数兑换码"
           type="text"
           class="gpt-password-input w-full mt-2"
           value=""
