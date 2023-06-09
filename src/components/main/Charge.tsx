@@ -150,7 +150,7 @@ export default (props: Props) => {
             <span class="text-sm">
               请在{countdown()}秒内完成支付
             </span>
-            <img class="w-1/3 mt-2" src={url()} />
+            <img class="w-3/5 mt-2" src={url()} />
             <div class="text-sm mt-2">
               付款后长时间未到账? 可在支付宝-我的-账单-联系收款方 中给我发送订单号
             </div>
