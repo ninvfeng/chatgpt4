@@ -1,89 +1,98 @@
 import {
-  handleContinuousPrompt,
-  handleImagePrompt,
+  handlePrompt,
   handleRapidPrompt,
-  handleSinglePrompt,
 } from './handler'
 import type { Provider } from '@/types/provider'
 
 const providerOpenAI = () => {
-  let authToken = ''
-
-  // 使用 localStorage 的代码
-  if (typeof window !== 'undefined' && typeof localStorage !== 'undefined')
-    authToken = localStorage.getItem('token') as string
-
   const provider: Provider = {
     id: 'provider-openai',
     icon: 'i-simple-icons-openai', // @unocss-include
     name: 'OpenAI',
     globalSettings: [
-      // {
-      //   key: 'apiKey',
-      //   name: 'API Key',
-      //   type: 'api-key',
-      // },
-      // {
-      //   key: 'baseUrl',
-      //   name: 'Base URL',
-      //   description: 'Custom base url for OpenAI API.',
-      //   type: 'input',
-      //   default: 'https://api.openai.com',
-      // },
+      {
+        key: 'apiKey',
+        name: 'API Key',
+        type: 'api-key',
+      },
+      {
+        key: 'baseUrl',
+        name: 'Base URL',
+        description: 'Custom base url for OpenAI API.',
+        type: 'input',
+        default: 'https://api.openai.com',
+      },
       {
         key: 'model',
-        name: 'ChatGPT版本',
-        description: 'ChatGPT版本',
+        name: 'OpenAI model',
+        description: 'Custom gpt model for OpenAI API.',
         type: 'select',
         options: [
-          // { value: 'gpt-3.5-turbo', label: 'gpt-3.5-turbo' },
+          { value: 'gpt-3.5-turbo', label: 'gpt-3.5-turbo' },
           { value: 'gpt-4', label: 'gpt-4' },
+          { value: 'gpt-4-0314', label: 'gpt-4-0314' },
+          { value: 'gpt-4-0613', label: 'gpt-4-0613' },
+          { value: 'gpt-4-32k', label: 'gpt-4-32k' },
+          { value: 'gpt-4-32k-0314', label: 'gpt-4-32k-0314' },
+          { value: 'gpt-4-32k-0613', label: 'gpt-4-32k-0613' },
+          { value: 'gpt-3.5-turbo-0301', label: 'gpt-3.5-turbo-0301' },
+          { value: 'gpt-3.5-turbo-0613', label: 'gpt-3.5-turbo-0613' },
+          { value: 'gpt-3.5-turbo-16k', label: 'gpt-3.5-turbo-16k' },
         ],
-        default: 'gpt-4',
+        default: 'gpt-3.5-turbo',
       },
       {
         key: 'maxTokens',
-        name: '最大字数',
-        description: '目前GPT4最大输入输出字数约4000字(8K token),调小可节省消耗',
+        name: 'Max Tokens',
+        description: 'The maximum number of tokens to generate in the completion.',
         type: 'slider',
-        min: 100,
-        max: 4000,
-        default: 2000,
+        min: 0,
+        max: 32768,
+        default: 2048,
         step: 1,
       },
       {
         key: 'temperature',
-        name: '温度',
+        name: 'Temperature',
         type: 'slider',
-        description: '在0到2之间。较高的值如0.8会使输出更随机更具创意,而较低的值如0.2会使其更集中和确定性',
+        description: 'What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.',
         min: 0,
         max: 2,
-        default: 0.5,
+        default: 0.7,
         step: 0.01,
       },
       {
-        key: 'authToken',
-        name: '认证信息',
-        type: 'api-key',
-        description: '认证信息,无需修改',
-        default: authToken,
+        key: 'top_p',
+        name: 'Top P',
+        description: 'An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.',
+        type: 'slider',
+        min: 0,
+        max: 1,
+        default: 1,
+        step: 0.01,
       },
-      // {
-      //   key: 'top_p',
-      //   name: 'Top P',
-      //   description: 'An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.',
-      //   type: 'slider',
-      //   min: 0,
-      //   max: 1,
-      //   default: 1,
-      //   step: 0.01,
-      // },
     ],
-    conversationSettings: [],
-    supportConversationType: ['continuous', 'single'],
-    handleSinglePrompt,
-    handleContinuousPrompt,
-    handleImagePrompt,
+    bots: [
+      {
+        id: 'chat_continuous',
+        type: 'chat_continuous',
+        name: 'Continuous Chat',
+        settings: [],
+      },
+      {
+        id: 'chat_single',
+        type: 'chat_single',
+        name: 'Single Chat',
+        settings: [],
+      },
+      {
+        id: 'image_generation',
+        type: 'image_generation',
+        name: 'DALL·E',
+        settings: [],
+      },
+    ],
+    handlePrompt,
     handleRapidPrompt,
   }
   return provider

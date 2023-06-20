@@ -7,6 +7,7 @@ import Markdown from './Markdown'
 interface Props {
   class?: string
   text: string
+  showRawCode?: boolean
   streamInfo?: () => {
     conversationId: string
     messageId: string
@@ -45,8 +46,9 @@ export default (props: Props) => {
 
   return (
     <Markdown
-      class={`prose prose-neutral dark:prose-invert fg-base! max-w-3xl -my-4 ${props.class ?? ''}`}
+      class={`prose prose-neutral dark:prose-invert fg-base! max-w-3xl ${props.class ?? ''}`}
       text={localText()}
+      showRawCode={props.showRawCode}
     />
   )
 }

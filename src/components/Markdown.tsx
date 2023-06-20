@@ -1,3 +1,4 @@
+import { Show } from 'solid-js'
 import { unified } from 'unified'
 import remarkParse from 'remark-parse'
 import remarkGfm from 'remark-gfm'
@@ -11,6 +12,7 @@ import 'katex/dist/katex.min.css'
 interface Props {
   class?: string
   text: string
+  showRawCode?: boolean
 }
 
 const parseMarkdown = (raw: string) => {
@@ -18,8 +20,10 @@ const parseMarkdown = (raw: string) => {
     .use(remarkParse)
     .use(remarkGfm)
     .use(remarkMath)
-    .use(remarkRehype)
-    .use(rehypePrism)
+    .use(remarkRehype, { allowDangerousHtml: true })
+    .use(rehypePrism, {
+      ignoreMissing: true,
+    })
     .use(rehypeKatex)
     .use(rehypeStringify)
     .processSync(raw)
@@ -27,12 +31,11 @@ const parseMarkdown = (raw: string) => {
 }
 
 export default (props: Props) => {
-  const htmlString = () => parseMarkdown(props.text)
+  const htmlString = () => props.showRawCode ? props.text : parseMarkdown(props.text)
 
   return (
-    <div
-      class={props.class ?? ''}
-      innerHTML={htmlString()}
-    />
+    <Show when={props.showRawCode} fallback={<div class={props.class ?? ''} innerHTML={htmlString()} />}>
+      <div class={`${props.class ?? ''} whitespace-pre-wrap overflow-auto my-0`} innerText={htmlString()} />
+    </Show>
   )
 }

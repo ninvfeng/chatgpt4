@@ -28,7 +28,6 @@ export default ({ config, settingsValue, setSettings }: Props) => {
   }
 
   const handleClick = () => {
-    console.log('providerGlobalSetting set', editFormData())
     setSettings(formData())
     setEditing(false)
   }
@@ -70,7 +69,7 @@ export default ({ config, settingsValue, setSettings }: Props) => {
               <SettingsUIComponent
                 settings={item}
                 editing={editing}
-                value={() => formData()[item.key] || ''}
+                value={() => formData()[item.key]}
                 setValue={(v) => {
                   setEditFormData({ ...formData(), [item.key]: v })
                 }}

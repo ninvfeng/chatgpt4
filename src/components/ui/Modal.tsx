@@ -11,6 +11,7 @@ interface Props {
   direction: 'top' | 'bottom' | 'left' | 'right'
   children: JSXElement
   closeBtnClass?: string
+  closeCallback?: () => void
 }
 
 export default (props: Props) => {
@@ -19,6 +20,9 @@ export default (props: Props) => {
     // TODO: set it to true will cause the modal closes exceptionally
     // https://github.com/chakra-ui/zag/issues/596
     closeOnOutsideClick: false,
+    onClose: () => {
+      props.closeCallback && props.closeCallback()
+    },
   }))
   const api = createMemo(() => dialog.connect(state, send, normalizeProps))
 
@@ -41,10 +45,10 @@ export default (props: Props) => {
       <Show when={api().isOpen}>
         <div class="fixed inset-0 z-20 fcc">
           <Portal>
-            <div {...api().backdropProps} class="fixed inset-0 bg-base opacity-60" />
+            <div {...api().backdropProps} class="fixed inset-0 bg-base opacity-60 pointer-events-auto" onclick={() => api().close()} />
           </Portal>
           <div {...api().containerProps}>
-            <div {...api().contentProps} class={`bg-base-100 transition-transform ease-out max-w-screen max-h-screen overflow-auto border-base ${containerBaseClass}`}>
+            <div {...api().contentProps} class={`bg-modal transition-transform ease-out max-w-screen max-h-screen overflow-auto border-base shadow-lg ring-0 outline-none ${containerBaseClass}`}>
               <button {...api().closeTriggerProps} class={`absolute p-1 rounded-md top-4 right-4 hv-base hv-foreground ${props.closeBtnClass || ''}`}>
                 <div i-carbon-close class="text-xl" />
               </button>

@@ -9,6 +9,7 @@ interface Props {
   children: JSX.Element
   openDelay?: number
   closeDelay?: number
+  handleChildClick?: () => void
   placement?: 'top' | 'bottom' | 'left' | 'right' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'left-start' | 'left-end' | 'right-start' | 'right-end'
 }
 
@@ -30,9 +31,9 @@ export const Tooltip = (props: Props) => {
   const resolvedChild = () => {
     const child = children(() => props.children)
     createEffect(() => {
-      spread(child() as Element, { ...api().triggerProps })
+      spread(child() as Element, { ...api().triggerProps, onClick: props.handleChildClick })
     })
-    return child
+    return child()
   }
 
   return (
@@ -40,7 +41,7 @@ export const Tooltip = (props: Props) => {
       <Dynamic component={resolvedChild} />
       <Show when={api().isOpen}>
         <div {...api().positionerProps} class="transition-opacity duration-300">
-          <div {...api().contentProps} class="px-2 py-1 text-sm text-white bg-dark-600 dark-bg-zinc-900 rounded-md shadow-sm op-80">{ props.tip }</div>
+          <div {...api().contentProps} class="px-2 py-1 text-xs text-white bg-dark-600 dark:bg-dark rounded-md shadow-sm">{ props.tip }</div>
         </div>
       </Show>
     </div>

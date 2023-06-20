@@ -17,26 +17,8 @@ export const convertReadableStreamToAccessor = async(stream: ReadableStream, set
       }
       done = readerDone
     }
-    updateInfo()
     return text
   } catch (error) {
     return text
   }
-}
-
-const updateInfo = async() => {
-  setTimeout(async() => {
-    const response = await fetch('/api/info', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        token: localStorage.getItem('token'),
-      }),
-    })
-    const responseJson = await response.json()
-    if (responseJson.code === 200)
-      localStorage.setItem('user', JSON.stringify(responseJson.data))
-  }, 2000)
 }

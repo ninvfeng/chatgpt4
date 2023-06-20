@@ -1,10 +1,11 @@
-import { action, map } from 'nanostores'
+import { action, atom, map } from 'nanostores'
 import { conversationMessagesMapData } from './tests/message.mock'
 import { db } from './storage/message'
 import { updateConversationById } from './conversation'
 import type { MessageInstance } from '@/types/message'
 
 export const conversationMessagesMap = map<Record<string, MessageInstance[]>>({})
+export const shareMessageIds = atom<string[]>([])
 
 export const rebuildMessagesStore = async() => {
   const data = await db.exportData() || {}
@@ -56,6 +57,47 @@ export const clearMessagesByConversationId = action(
     map.setKey(id, [])
     db.deleteItem(id)
     !deleteChat && updateConversationById(id, {
+      lastUseTime: Date.now(),
+    })
+  },
+)
+
+export const deleteMessageByConversationId = action(
+  conversationMessagesMap,
+  'deleteMessageByConversationId',
+  (map, id: string, payload: MessageInstance) => {
+    const oldMessages = map.get()[id] || []
+    map.setKey(id, [...oldMessages.filter(message => message.id !== payload.id)])
+    db.setItem(id, [...oldMessages.filter(message => message.id !== payload.id)])
+    updateConversationById(id, {
+      lastUseTime: Date.now(),
+    })
+  },
+)
+
+export const spliceMessageByConversationId = action(
+  conversationMessagesMap,
+  'spliceMessagesByConversationId',
+  (map, id: string, payload: MessageInstance) => {
+    const oldMessages = map.get()[id] || []
+    const currentIndex = oldMessages.findIndex(message => message.id === payload.id)
+    map.setKey(id, [...oldMessages.slice(0, currentIndex + 1)])
+    db.setItem(id, [...oldMessages.slice(0, currentIndex + 1)])
+    updateConversationById(id, {
+      lastUseTime: Date.now(),
+    })
+  },
+)
+
+export const spliceUpdateMessageByConversationId = action(
+  conversationMessagesMap,
+  'spliceMessagesByConversationId',
+  (map, id: string, payload: MessageInstance) => {
+    const oldMessages = map.get()[id] || []
+    const currentIndex = oldMessages.findIndex(message => message.id === payload.id)
+    map.setKey(id, [...oldMessages.slice(0, currentIndex), payload])
+    db.setItem(id, [...oldMessages.slice(0, currentIndex), payload])
+    updateConversationById(id, {
       lastUseTime: Date.now(),
     })
   },

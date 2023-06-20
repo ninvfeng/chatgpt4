@@ -1,6 +1,7 @@
 import { useStore } from '@nanostores/solid'
-import { currentConversationId, currentEditingConversationId, deleteConversationById } from '@/stores/conversation'
-import { showConversationEditModal, showConversationSidebar } from '@/stores/ui'
+import { currentConversationId, deleteConversationById } from '@/stores/conversation'
+import { showConversationSidebar } from '@/stores/ui'
+import { useI18n } from '@/hooks'
 import type { Conversation } from '@/types/conversation'
 
 interface Props {
@@ -10,6 +11,7 @@ interface Props {
 }
 
 export default ({ instance }: Props) => {
+  const { t } = useI18n()
   const $currentConversationId = useStore(currentConversationId)
   const isTouchDevice = 'ontouchstart' in document.documentElement || navigator.maxTouchPoints > 0
 
@@ -19,34 +21,23 @@ export default ({ instance }: Props) => {
   }
   const handleDelete = (e: MouseEvent, conversationId: string) => {
     e.stopPropagation()
-    deleteConversationById(conversationId)
     currentConversationId.set('')
-  }
-  const handleEdit = (e: MouseEvent, conversationId: string) => {
-    e.stopPropagation()
-    currentEditingConversationId.set(conversationId)
-    showConversationEditModal.set(true)
+    deleteConversationById(conversationId)
   }
 
   return (
     <div
       class={[
-        'group fi h-16 px-4 gap-3 border-b border-l-4 border-b-base hv-base',
-        instance.id === $currentConversationId() ? 'border-l-emerald-600' : 'border-l-transparent',
+        'group fi h-10 my-0.5 px-2 gap-2 hv-base rounded-md',
+        instance.id === $currentConversationId() ? 'bg-base-200' : '',
       ].join(' ')}
       onClick={handleClick}
     >
       <div class="fcc w-8 h-8 rounded-full text-xl shrink-0">
-        <div class={instance.icon || 'i-carbon-chat'} />
+        {instance.icon ? instance.icon : <div class="text-base i-carbon-chat" />}
       </div>
-      <div class="flex-1 truncate">{ instance.name || 'Untitled' }</div>
+      <div class="flex-1 truncate text-sm">{ instance.name || t('conversations.untitled') }</div>
       <div class={isTouchDevice ? '' : 'hidden group-hover:block'}>
-        <div
-          class="inline-flex p-2 items-center gap-1 rounded-md hv-base"
-          onClick={e => handleEdit(e, instance.id)}
-        >
-          <div class="i-carbon-edit" />
-        </div>
         <div
           class="inline-flex p-2 items-center gap-1 rounded-md hv-base"
           onClick={e => handleDelete(e, instance.id)}

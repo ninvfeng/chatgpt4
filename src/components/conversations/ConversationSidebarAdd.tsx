@@ -1,21 +1,20 @@
-import { showConversationEditModal } from '@/stores/ui'
-import { currentEditingConversationId } from '@/stores/conversation'
+import { useI18n } from '@/hooks'
+import { addConversation } from '@/stores/conversation'
+import Button from '../ui/Button'
 
 export default () => {
+  const { t } = useI18n()
   const handleAdd = () => {
-    currentEditingConversationId.set(null)
-    showConversationEditModal.set(true)
+    addConversation()
   }
 
   return (
-    <div
-      class="flex items-center h-18 px-4 gap-4 border-b border-l-4 border-l-transparent border-b-base hv-base"
+    <Button
+      icon="i-carbon-add"
       onClick={handleAdd}
+      size="sm"
     >
-      <div class="w-8 h-8 flex items-center justify-center op-60">
-        <div class="i-carbon-add text-2xl" />
-      </div>
-      <div class="op-60">新对话</div>
-    </div>
+      {t('conversations.add')}
+    </Button>
   )
 }
