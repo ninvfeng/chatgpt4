@@ -3,6 +3,11 @@ import {
   handleRapidPrompt,
 } from './handler'
 import type { Provider } from '@/types/provider'
+let authToken = ''
+
+// 使用 localStorage 的代码
+if (typeof window !== 'undefined' && typeof localStorage !== 'undefined')
+  authToken = localStorage.getItem('token') as string
 
 const providerOpenAI = () => {
   const provider: Provider = {
@@ -59,7 +64,7 @@ const providerOpenAI = () => {
         name: '认证信息',
         type: 'api-key',
         description: '认证信息,无需修改',
-        default: localStorage.getItem('token') as string,
+        default: authToken,
       },
     ],
     bots: [
