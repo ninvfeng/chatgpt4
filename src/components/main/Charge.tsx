@@ -147,10 +147,12 @@ export default (props: Props) => {
             </div>
           </Show>
           <Show when={url()}>
-            <span class="text-sm">
-              请在{countdown()}秒内完成支付
-            </span>
-            <img class="w-3/5 mt-2" src={url()} />
+            <div class="flex flex-col">
+              <span class="text-sm">
+                请在{countdown()}秒内完成支付
+              </span>
+              <img class="w-3/5 max-w-[200px] mt-2" src={url()} />
+            </div>
             <div class="text-sm mt-2">
               付款后长时间未到账? 可在支付宝-我的-账单-联系收款方 中给我发送订单号
             </div>
@@ -168,7 +170,7 @@ export default (props: Props) => {
           ref={emailRef!}
           placeholder="请输入字数兑换码"
           type="text"
-          class="gpt-password-input w-full mt-2"
+          class="px-4 py-3 h-12 rounded-sm bg-(slate op-15) base-focus w-full mt-2"
           value=""
         />
         <button onClick={selfCharge} class="w-1/3 h-12 mt-2 px-4 py-2 bg-slate bg-op-15 hover:bg-op-20 rounded-sm">
