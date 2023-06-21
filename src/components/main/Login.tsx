@@ -69,14 +69,14 @@ export default (props: Props) => {
         ref={emailRef!}
         placeholder="邮箱"
         type="text"
-        class="gpt-password-input w-full"
+        class="px-4 py-3 h-12 rounded-sm bg-(slate op-15) base-focus w-full"
         value=""
       />
       <div class="flex mt-2 justify-center items-center">
         <input
           ref={codeRef!}
           id="code_input"
-          class="gpt-password-input w-2/3"
+          class="px-4 py-3 h-12 rounded-sm bg-(slate op-15) base-focus w-2/3"
           placeholder="验证码"
           v-model="data.form.verify_code"
         />

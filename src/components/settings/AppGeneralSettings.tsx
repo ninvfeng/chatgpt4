@@ -15,17 +15,17 @@ export default (props: Props) => {
   const { t } = useI18n()
 
   const settingsUIList = () => ([
-    {
-      key: 'requestWithBackend',
-      name: t('settings.general.requestWithBackend'),
-      type: 'toggle',
-      default: false,
-    },
+    // {
+    //   key: 'requestWithBackend',
+    //   name: t('settings.general.requestWithBackend'),
+    //   type: 'toggle',
+    //   default: false,
+    // },
     {
       key: 'locale',
       name: t('settings.general.locale'),
       type: 'select',
-      default: 'en',
+      default: 'zhCN',
       options: localesOptions,
     },
   ] as SettingsUI[])

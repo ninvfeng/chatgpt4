@@ -39,11 +39,11 @@ export default () => {
       <footer class="h-14 fi justify-between px-3">
         <ThemeToggle />
         <div text-xs op-40 px-2>
-          <a href="https://docs.anse.app" target="_blank" rel="noreferrer" class="hv-foreground">
-            Docs
+          <a href="https://z0mjw1ejzdy.feishu.cn/docx/SO7Td80Tvo302JxogJkcnFL6n6b" target="_blank" rel="noreferrer" class="hv-foreground">
+            使用说明
           </a>
           <span class="px-1"> · </span>
-          <a href="https://github.com/anse-app/anse" target="_blank" rel="noreferrer" class="hv-foreground">
+          <a href="https://github.com/ninvfeng/chatgpt4" target="_blank" rel="noreferrer" class="hv-foreground">
             Github
           </a>
         </div>

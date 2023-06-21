@@ -21,11 +21,13 @@ export default () => {
   return (
     <>
       {$currentConversationId() && (
-        <div
-          class="fcc p-2 rounded-md text-xl hv-foreground"
-          onClick={() => { showConfirmModal.set(true) }}
-        >
-          <div i-carbon-clean />
+        <div class="flex">
+          <div
+            class="fcc p-2 rounded-md text-xl hv-foreground"
+            onClick={() => { showConfirmModal.set(true) }}
+          >
+            <div i-carbon-clean />
+          </div>
         </div>
       )}
       <ConfirmModal title={t('conversations.confirm.title')} description={t('conversations.confirm.desc')} onConfirm={handleClearMessage} onCancel={() => { showConfirmModal.set(false) }} />

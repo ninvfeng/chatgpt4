@@ -20,13 +20,13 @@ export default (props: Props) => {
       selectedComponent={item => (
         <div class="fi gap-2">
           {item.provider.icon && <div class={item.provider.icon} />}
-          <div>{item.provider.name} / {item.label}</div>
+          <div>{item.label}</div>
         </div>
       )}
       itemComponent={(item, isSelected) => (
         <div class="fi gap-2 w-full px-2 py-1 border-b border-b-base hv-base">
           {item.provider.icon && <div class={item.provider.icon} />}
-          <div class="flex-1">{item.provider?.name} / {item.label}</div>
+          <div class="flex-1">{item.label}</div>
           {isSelected && (
             <div i-carbon-checkmark />
           )}

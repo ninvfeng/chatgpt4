@@ -1,10 +1,10 @@
 import { onMount } from 'solid-js'
 import { scrollController, showConversationSidebar, showSettingsSidebar } from '@/stores/ui'
 import { useLargeScreen } from '@/hooks'
+import { addConversation } from '@/stores/conversation'
 import ConversationHeaderInfo from './ConversationHeaderInfo'
 import ConversationMessageClearButton from './ConversationMessageClearButton'
 import ConversationMessageShareButton from './ConversationMessageShareButton'
-
 export default () => {
   onMount(() => {
     useLargeScreen(() => {
@@ -27,6 +27,13 @@ export default () => {
       <div class="fi gap-1 overflow-hidden">
         <ConversationMessageClearButton />
         <ConversationMessageShareButton />
+
+        <div
+          class="fcc p-2 rounded-md text-xl hv-foreground"
+          onClick={() => addConversation()}
+        >
+          <div i-carbon-add />
+        </div>
         <div
           class="fcc p-2 rounded-md text-xl hv-foreground lg:hidden"
           onClick={() => showSettingsSidebar.set(true)}

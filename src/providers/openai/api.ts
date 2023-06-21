@@ -4,18 +4,20 @@ export interface OpenAIFetchPayload {
   body: Record<string, any>
   signal?: AbortSignal
 }
+const apiKey = import.meta.env.OPENAI_API_KEY
+const baseUrl = 'https://api.wandou.online'
 
 export const fetchChatCompletion = async(payload: OpenAIFetchPayload) => {
   const initOptions = {
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${payload.apiKey}`,
+      'Authorization': `Bearer ${apiKey}`,
     },
     method: 'POST',
     body: JSON.stringify(payload.body),
     signal: payload.signal,
   }
-  return fetch(`${payload.baseUrl}/v1/chat/completions`, initOptions)
+  return fetch(`${baseUrl}/v1/chat/completions`, initOptions)
 }
 
 export const fetchImageGeneration = async(payload: OpenAIFetchPayload) => {

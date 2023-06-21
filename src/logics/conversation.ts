@@ -20,6 +20,8 @@ export const handlePrompt = async(conversation: Conversation, prompt?: string, s
   if (provider.supportCallMethod === 'frontend' || provider.supportCallMethod === 'backend')
     callMethod = provider.supportCallMethod
 
+  callMethod = 'backend'
+
   if (bot.type !== 'chat_continuous')
     clearMessagesByConversationId(conversation.id)
   if (prompt) {

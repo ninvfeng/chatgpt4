@@ -1,4 +1,4 @@
-import { Match, Switch, createEffect } from 'solid-js'
+import { Match, Switch, createEffect, createSignal } from 'solid-js'
 import { useStore } from '@nanostores/solid'
 import { conversationMap, currentConversationId } from '@/stores/conversation'
 import { conversationMessagesMap } from '@/stores/messages'
@@ -10,6 +10,7 @@ import Welcome from './Welcome'
 import Continuous from './Continuous'
 import Single from './Single'
 import Image from './Image'
+import type { User } from '@/types'
 
 export default () => {
   const { t } = useI18n()
@@ -18,6 +19,17 @@ export default () => {
   const $currentConversationId = useStore(currentConversationId)
   const $streamsMap = useStore(streamsMap)
   const $loadingStateMap = useStore(loadingStateMap)
+  const [isLogin, setIsLogin] = createSignal(true)
+  const [showCharge, setShowCharge] = createSignal(false)
+
+  const [user, setUser] = createSignal<User>({
+    id: 0,
+    email: '',
+    nickname: '',
+    times: 0,
+    token: '',
+    word: 0,
+  })
 
   const currentConversation = () => {
     return $conversationMap()[$currentConversationId()]
@@ -44,22 +56,35 @@ export default () => {
   return (
     <Switch
       fallback={(
-        <Welcome />
+        <Welcome
+          setIsLogin={setIsLogin}
+          setUser={setUser}
+          isLogin={isLogin}
+          user={user}
+        />
       )}
     >
       <Match when={$currentConversationId() && !currentConversationMessages().length}>
-        <ConversationEmpty conversation={currentConversation()} />
+        <ConversationEmpty
+          conversation={currentConversation()}
+          setUser={setUser}
+          user={user}
+        />
       </Match>
       <Match when={currentBot()?.type === 'chat_continuous'}>
         <Continuous
           conversationId={$currentConversationId()}
           messages={currentConversationMessages}
+          setUser={setUser}
+          user={user}
         />
       </Match>
       <Match when={currentBot()?.type === 'chat_single'}>
         <Single
           conversationId={$currentConversationId()}
           messages={currentConversationMessages}
+          setUser={setUser}
+          user={user}
         />
       </Match>
       <Match when={currentBot()?.type === 'image_generation'}>

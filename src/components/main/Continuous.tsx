@@ -4,12 +4,17 @@ import { createScrollPosition } from '@solid-primitives/scroll'
 import { leading, throttle } from '@solid-primitives/scheduled'
 import { isSendBoxFocus } from '@/stores/ui'
 import MessageItem from './MessageItem'
-import type { Accessor } from 'solid-js'
+import Charge from './Charge'
+import type { Accessor, Setter } from 'solid-js'
 import type { MessageInstance } from '@/types/message'
+import type { User } from '@/types'
 
 interface Props {
   conversationId: string
   messages: Accessor<MessageInstance[]>
+
+  setUser: Setter<User>
+  user: Accessor<User>
 }
 
 export default (props: Props) => {
@@ -39,6 +44,16 @@ export default (props: Props) => {
     <>
       <div class="scroll-list relative flex flex-col h-full overflow-y-scroll" ref={scrollRef!}>
         <div class="w-full">
+
+          <div class="px-6 pb-2">
+            <Charge
+              setUser={props.setUser}
+              user={props.user}
+            />
+          </div>
+          <div class="px-6 text-gray-500 text-xs my-2">
+            注意:连续对话字数消耗很快 (建议每次都开新对话)
+          </div>
           <For each={props.messages()}>
             {(message, index) => (
               <div class="border-b border-base">
