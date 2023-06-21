@@ -29,7 +29,7 @@ export const buildI18nContext = (locale: Accessor<TranslatePair>): I18nContext =
 }
 
 export function useI18n() {
-  let defaultLocale = providerSettingsMap.get()?.general?.locale ?? 'en'
+  let defaultLocale = providerSettingsMap.get()?.general?.locale ?? 'zhCN'
   providerSettingsMap.listen((value, changedKey) => {
     const general = value[changedKey ?? 'general'] as unknown as GeneralSettings
     defaultLocale = general?.locale
