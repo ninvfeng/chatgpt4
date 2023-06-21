@@ -5,7 +5,7 @@ export interface OpenAIFetchPayload {
   signal?: AbortSignal
 }
 const apiKey = import.meta.env.OPENAI_API_KEY
-const baseUrl = 'https://api.wandou.online'
+const baseUrl = import.meta.env.OPENAI_API_BASE_URL ? import.meta.env.OPENAI_API_BASE_URL : 'https://api.openai.com'
 
 export const fetchChatCompletion = async(payload: OpenAIFetchPayload) => {
   const initOptions = {
