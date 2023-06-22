@@ -85,12 +85,12 @@ export default (props: Props) => {
   }
 
   const [menuList, setMenuList] = createSignal<MenuItem[]>([
-    { id: 'retry', label: 'Retry send', icon: 'i-carbon:restart', role: 'all', action: handleRetryMessageItem },
-    { id: 'raw', label: 'Show raw code', icon: 'i-carbon-code', role: 'system', action: () => setShowRawCode(!showRawCode()) },
-    { id: 'edit', label: 'Edit message', icon: 'i-carbon:edit', role: 'user', action: handleEditMessageItem },
-    { id: 'copy', label: 'Copy message', icon: 'i-carbon-copy', role: 'all', action: handleCopyMessageItem },
-    { id: 'delete', label: 'Delete message', icon: 'i-carbon-trash-can', role: 'all', action: handleDeleteMessageItem },
-    { id: 'share', label: 'Share message', icon: 'i-carbon:export', role: 'all', action: handleShareMessageItem },
+    { id: 'retry', label: '重新生成', icon: 'i-carbon:restart', role: 'user', action: handleRetryMessageItem },
+    { id: 'raw', label: '原始信息', icon: 'i-carbon-code', role: 'system', action: () => setShowRawCode(!showRawCode()) },
+    { id: 'edit', label: '编辑', icon: 'i-carbon:edit', role: 'user', action: handleEditMessageItem },
+    { id: 'copy', label: '复制', icon: 'i-carbon-copy', role: 'all', action: handleCopyMessageItem },
+    { id: 'delete', label: '删除', icon: 'i-carbon-trash-can', role: 'all', action: handleDeleteMessageItem },
+    { id: 'share', label: '分享', icon: 'i-carbon:export', role: 'all', action: handleShareMessageItem },
   ])
 
   if (props.message.role === 'user')
