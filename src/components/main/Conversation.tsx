@@ -29,6 +29,11 @@ export default () => {
     times: 0,
     token: '',
     word: 0,
+    share_code: '',
+    inv_count: 0,
+    inv_pay_count: 0,
+    word_reward: 0,
+    dir_inv_rate: 0,
   })
 
   const currentConversation = () => {

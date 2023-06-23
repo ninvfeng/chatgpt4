@@ -16,6 +16,11 @@ export interface User {
   times: number
   token: string
   word: number
+  share_code: string
+  inv_count: number
+  inv_pay_count: number
+  word_reward: number
+  dir_inv_rate: number
 }
 
 export type ChatType = 'single' | 'continuous' | 'image'
