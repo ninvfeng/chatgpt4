@@ -61,10 +61,24 @@ export default () => {
           <div class="mt-4 px-4 op-60 text-sm">
             <div>↓邀请好友充值可获得{user().dir_inv_rate * 100}%奖励</div>
             <div class="flex flex-col">
-              <div onClick={() => { writeClipboard(`${location.origin}?code=${user().share_code}`) }} class="mt-1 inline-flex items-center justify-center gap-1 text-sm  bg-slate/20 px-2 py-1 rounded-md transition-colors cursor-pointer hover:bg-slate/50">
+              <div
+                onClick={() => {
+                  writeClipboard(`${location.origin}?code=${user().share_code}`).then(() => {
+                    alert('复制成功')
+                  })
+                }}
+                class="mt-1 inline-flex items-center justify-center gap-1 text-sm  bg-slate/20 px-2 py-1 rounded-md transition-colors cursor-pointer hover:bg-slate/50"
+              >
                 {`${location.origin}?code=${user().share_code}`}
               </div>
-              <div onClick={() => { writeClipboard(`${location.origin}?code=${user().share_code}`) }} class="mt-1 inline-flex items-center justify-center gap-1 text-sm  bg-slate/20 px-2 py-1 rounded-md transition-colors cursor-pointer hover:bg-slate/50">
+              <div
+                onClick={() => {
+                  writeClipboard(`${location.origin}?code=${user().share_code}`).then(() => {
+                    alert('复制成功')
+                  })
+                }}
+                class="mt-1 inline-flex items-center justify-center gap-1 text-sm  bg-slate/20 px-2 py-1 rounded-md transition-colors cursor-pointer hover:bg-slate/50"
+              >
                 复制
               </div>
             </div>
