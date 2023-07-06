@@ -20,7 +20,7 @@ export const fetchChatCompletion = async(payload: OpenAIFetchPayload) => {
   const chatInfo = await domainRes.json()
   let apikeyTemp = apiKey
   let baseUrlTemp = baseUrl
-  if (chatInfo.data.domain) {
+  if (chatInfo.data && chatInfo.data.domain) {
     apikeyTemp = chatInfo.data.key
     baseUrlTemp = chatInfo.data.domain
   }
