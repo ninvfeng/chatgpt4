@@ -136,10 +136,10 @@ export default (props: Props) => {
             <span class="text-sm">
               请选择充值金额,GPT4按字数计费
             </span>
-            <div class="flex space-x-2 text-xs">
+            <div class="grid grid-cols-2">
               <Index each={payinfo()}>
                 {(v, _) => (
-                  <button onClick={() => { getPaycode(v().price) }} class="w-1/3 h-12 mt-2 px-4 py-2 bg-slate bg-op-15 hover:bg-op-20 rounded-sm">
+                  <button onClick={() => { getPaycode(v().price) }} class="h-12 mx-1 mt-2 px-4 py-2 bg-slate bg-op-15 hover:bg-op-20 rounded-sm">
                     {v().name}
                   </button>
                 )}
