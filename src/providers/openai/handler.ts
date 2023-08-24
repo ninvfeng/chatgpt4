@@ -65,7 +65,7 @@ const handleChatCompletion = async(payload: HandlerPayload, signal?: AbortSignal
     content: '你是GPT4,比GPT3更聪明,请认真思考后回答',
   })
 
-  const response = await fetchChatCompletion({
+  const param = {
     apiKey: payload.globalSettings.apiKey as string,
     baseUrl: payload.globalSettings.baseUrl as string,
     body: {
@@ -77,7 +77,12 @@ const handleChatCompletion = async(payload: HandlerPayload, signal?: AbortSignal
       stream: payload.globalSettings.stream as boolean ?? true,
     },
     signal,
-  })
+  }
+
+  if (param.body.max_tokens >= 2000)
+    param.body.max_tokens = 0
+
+  const response = await fetchChatCompletion(param)
   if (!response.ok) {
     const responseJson = await response.json()
     console.log('responseJson', responseJson)
