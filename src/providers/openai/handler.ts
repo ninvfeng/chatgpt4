@@ -36,29 +36,27 @@ export const handleRapidPrompt: Provider['handleRapidPrompt'] = async(prompt, gl
 
 const handleChatCompletion = async(payload: HandlerPayload, signal?: AbortSignal) => {
   // 消耗字数
-  if (payload.conversationId !== 'temp') {
-    let word_num = 0
-    payload.messages.forEach((v) => {
-      word_num += v.content.length
-    })
-    const useRes = await fetch(`${import.meta.env.API_URL}/api/gpt/consumeWord`, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Token': payload.globalSettings.authToken as string,
-      },
-      method: 'POST',
-      body: JSON.stringify({
-        model: payload.globalSettings.model,
-        type: 'ask',
-        word_num,
-        app_key: import.meta.env.APP_KEY,
-      }),
-    })
-    const res = await useRes.text()
-    const resJson = JSON.parse(res)
-    if (resJson.code !== 200)
-      return resJson.message
-  }
+  let word_num = 0
+  payload.messages.forEach((v) => {
+    word_num += v.content.length
+  })
+  const useRes = await fetch(`${import.meta.env.API_URL}/api/gpt/consumeWord`, {
+    headers: {
+      'Content-Type': 'application/json',
+      'Token': payload.globalSettings.authToken as string,
+    },
+    method: 'POST',
+    body: JSON.stringify({
+      model: payload.globalSettings.model,
+      type: 'ask',
+      word_num,
+      app_key: import.meta.env.APP_KEY,
+    }),
+  })
+  const res = await useRes.text()
+  const resJson = JSON.parse(res)
+  if (resJson.code !== 200)
+    return resJson.message
 
   payload.messages.unshift({
     role: 'system',
