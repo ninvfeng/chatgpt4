@@ -16,7 +16,7 @@ export interface Provider {
   // Handle a prompt in conversation
   handlePrompt: (payload: HandlerPayload, signal?: AbortSignal) => Promise<PromptResponse>
   /** Handle a temporary, rapidly prompt, used for interface display like conversation title's generation. */
-  handleRapidPrompt?: (prompt: string, globalSettings: SettingsPayload) => Promise<string>
+  handleRapidPrompt?: (prompt: string, botId: string, globalSettings: SettingsPayload) => Promise<string>
 }
 
 export interface Bot {

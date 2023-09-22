@@ -11,11 +11,11 @@ export const handlePrompt: Provider['handlePrompt'] = async(payload, signal?: Ab
     return handleImageGeneration(payload)
 }
 
-export const handleRapidPrompt: Provider['handleRapidPrompt'] = async(prompt, globalSettings) => {
+export const handleRapidPrompt: Provider['handleRapidPrompt'] = async(prompt, botId, globalSettings) => {
   const rapidPromptPayload = {
     conversationId: 'temp',
     conversationType: 'chat_single',
-    botId: 'temp',
+    botId,
     globalSettings: {
       ...globalSettings,
       model: 'gpt-3.5-turbo',
@@ -35,28 +35,50 @@ export const handleRapidPrompt: Provider['handleRapidPrompt'] = async(prompt, gl
 }
 
 const handleChatCompletion = async(payload: HandlerPayload, signal?: AbortSignal) => {
+  let isFree = false
+  if (payload.conversationId === 'temp' && payload.globalSettings?.model === 'gpt-3.5-turbo') {
+    const freeRes = await fetch(`${import.meta.env.API_URL}/api/gpt/titleCheck`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Token': payload.globalSettings.authToken as string,
+      },
+      method: 'POST',
+      body: JSON.stringify({
+        conversationId: payload.botId,
+        app_key: import.meta.env.APP_KEY,
+      }),
+    })
+    const fres = await freeRes.text()
+    const fresJson = JSON.parse(fres)
+    if (fresJson.code === 200)
+      isFree = fresJson.data
+  }
+  console.log(`isFree:${isFree}`)
   // 消耗字数
-  let word_num = 0
-  payload.messages.forEach((v) => {
-    word_num += v.content.length
-  })
-  const useRes = await fetch(`${import.meta.env.API_URL}/api/gpt/consumeWord`, {
-    headers: {
-      'Content-Type': 'application/json',
-      'Token': payload.globalSettings.authToken as string,
-    },
-    method: 'POST',
-    body: JSON.stringify({
-      model: payload.globalSettings.model,
-      type: 'ask',
-      word_num,
-      app_key: import.meta.env.APP_KEY,
-    }),
-  })
-  const res = await useRes.text()
-  const resJson = JSON.parse(res)
-  if (resJson.code !== 200)
-    return resJson.message
+  if (!isFree) {
+    let word_num = 0
+    payload.messages.forEach((v) => {
+      word_num += v.content.length
+    })
+    const useRes = await fetch(`${import.meta.env.API_URL}/api/gpt/consumeWord`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Token': payload.globalSettings.authToken as string,
+      },
+      method: 'POST',
+      body: JSON.stringify({
+        model: payload.globalSettings.model,
+        type: 'ask',
+        word_num,
+        app_key: import.meta.env.APP_KEY,
+        conversationId: payload.conversationId,
+      }),
+    })
+    const res = await useRes.text()
+    const resJson = JSON.parse(res)
+    if (resJson.code !== 200)
+      return resJson.message
+  }
 
   payload.messages.unshift({
     role: 'system',
@@ -76,7 +98,6 @@ const handleChatCompletion = async(payload: HandlerPayload, signal?: AbortSignal
     },
     signal,
   })
-
   if (!response.ok) {
     const responseJson = await response.json()
     console.log('responseJson', responseJson)

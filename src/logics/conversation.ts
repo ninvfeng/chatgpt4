@@ -92,6 +92,7 @@ export const handlePrompt = async(conversation: Conversation, prompt?: string, s
   if (providerResponse && bot.type === 'chat_continuous' && !conversation.name) {
     const inputText = conversation.systemInfo || prompt!
     const rapidPayload = generateRapidProviderPayload(promptHelper.summarizeText(inputText), provider.id)
+    rapidPayload.botId = conversation.id
     const generatedTitle = await getProviderResponse(provider.id, rapidPayload, { caller: callMethod }).catch(() => {}) as string || inputText
     updateConversationById(conversation.id, {
       name: generatedTitle.replace(/^['"\s]+|['"\s]+$/g, ''),
@@ -145,8 +146,8 @@ export const callProviderHandler = async(providerId: string, payload: HandlerPay
   if (!provider) return
 
   let response: PromptResponse
-  if (payload.botId === 'temp')
-    response = await provider.handleRapidPrompt?.(payload.prompt!, payload.globalSettings)
+  if (payload.conversationId === 'temp')
+    response = await provider.handleRapidPrompt?.(payload.prompt!, payload.botId, payload.globalSettings)
   else
     response = await provider.handlePrompt?.(payload, signal)
 
