@@ -177,7 +177,7 @@ export default (props: Props) => {
               </div>
             </Show>
             <div class="text-sm mt-2">
-              付款后长时间未到账? 可在支付宝-我的-账单-联系收款方 中给我发送订单号
+              付款后长时间未到账? 客服QQ:765500788
             </div>
           </Show>
         </div>
