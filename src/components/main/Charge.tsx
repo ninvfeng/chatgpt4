@@ -1,12 +1,13 @@
 import { Index, Show, createSignal, onMount } from 'solid-js'
-import type { User } from '@/types'
+
 import type { Accessor, Setter } from 'solid-js'
+import type { User } from '@/types'
 interface Props {
   setUser: Setter<User>
   user: Accessor<User>
 }
 
-interface PayInfoType { name: string, price: number }
+interface PayInfoType { name: string, price: number, tips: string }
 
 export default (props: Props) => {
   onMount(async() => {
@@ -17,14 +18,14 @@ export default (props: Props) => {
       props.setUser({ ...props.user() })
     }, 3000)
   })
-
+  let qr = ''
   let emailRef: HTMLInputElement
 
   const [countdown, setCountdown] = createSignal(0)
   const [url, setUrl] = createSignal('')
   const [showCharge, setShowCharge] = createSignal(false)
 
-  const [payinfo, setPayinfo] = createSignal<PayInfoType[]>([{ name: '', price: 0 }])
+  const [payinfo, setPayinfo] = createSignal<PayInfoType[]>([{ name: '', price: 0, tips: '' }])
 
   const selfCharge = async() => {
     const response = await fetch('/api/exchange', {
@@ -68,8 +69,15 @@ export default (props: Props) => {
   const close = () => {
     setShowCharge(false)
   }
-
+  const isMobile = () => {
+    const flag = navigator.userAgent.match(
+      /(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i,
+    )
+    return flag
+  }
   const getPaycode = async(price: number) => {
+    qr = ''
+    let flow_id = ''
     const response = await fetch('/api/getpaycode', {
       method: 'POST',
       headers: {
@@ -82,7 +90,11 @@ export default (props: Props) => {
     })
     const responseJson = await response.json()
     if (responseJson.code === 200) {
+      if (isMobile())
+        qr = responseJson.data.qr
+
       setUrl(responseJson.data.url)
+      flow_id = responseJson.data.flow_id
       setCountdown(300)
       const intv = setInterval(() => {
         setCountdown(countdown() - 1)
@@ -105,6 +117,8 @@ export default (props: Props) => {
             },
             body: JSON.stringify({
               token: localStorage.getItem('token'),
+              flow_id,
+
             }),
           })
           const responseJson = await response.json()
@@ -145,6 +159,7 @@ export default (props: Props) => {
                 )}
               </Index>
             </div>
+
           </Show>
           <Show when={url()}>
             <div class="flex flex-col">
@@ -153,6 +168,14 @@ export default (props: Props) => {
               </span>
               <img class="w-3/5 max-w-[200px] mt-2" src={url()} />
             </div>
+            <div>请使用支付宝扫码支付</div>
+            <Show when={qr}>
+              <div class="mt-4 flex space-x-2 items-center">
+                <span>或</span>
+                <a target="_blank" href={qr} class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" rel="noreferrer">点击支付
+                </a>
+              </div>
+            </Show>
             <div class="text-sm mt-2">
               付款后长时间未到账? 可在支付宝-我的-账单-联系收款方 中给我发送订单号
             </div>
