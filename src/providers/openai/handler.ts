@@ -82,7 +82,7 @@ const handleChatCompletion = async(payload: HandlerPayload, signal?: AbortSignal
 
   payload.messages.unshift({
     role: 'system',
-    content: '你是GPT4,比GPT3更聪明,请认真思考后回答',
+    content: 'OpenAI在2023年11月6号发布了GPT4-1106-preview模型， 而你就是这个模型',
   })
 
   const response = await fetchChatCompletion({
