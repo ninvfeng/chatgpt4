@@ -204,20 +204,21 @@ export default (props: Props) => {
             关闭
           </button>
 
-          <div class="text-sm text-gray-600 space-y-2 mt-2">
+          <div class="text-xs text-gray-600 space-y-2 mt-6">
+            <div class="font-bold text-gray-700 text-center">常见问题</div>
             <div>
-              <div class="font-bold text-gray-700">1.为什么发送问题后无任何反应</div>
-              <div>本站点在低版本的浏览器中可能无法使用，电脑上请使用最新谷歌浏览器，手机上可使用夸克浏览器</div>
-            </div>
-
-            <div>
-              <div class="font-bold text-gray-700">2.这是真的GPT4吗</div>
+              <div class="font-bold text-gray-700">1.这是真的GPT4吗</div>
               <div>是的，默认使用最新的gpt-4-turbo(gpt4-1106-preview)模型，它的知识库截止2023年4月，但你问它是GPT几的时候有可能它并不知道自己是GPT4，可以用一些经典逻辑题区分，如：爸爸妈妈结婚为什么没有邀请我？ 如果能回答到结婚时你还没有出生就是GPT4, GPT3.5是回答不到这个点的</div>
             </div>
 
             <div>
-              <div class="font-bold text-gray-700">3.为什么字数一下子消耗完了</div>
+              <div class="font-bold text-gray-700">2.为什么字数一下子消耗完了</div>
               <div>非必要，请每个问题开新对话单独提问！连续对话可以理解上下文，但每次提问都需要带上前面所有的内容，所以前面内容会重复计算字数</div>
+            </div>
+
+            <div>
+              <div class="font-bold text-gray-700">3.为什么发送问题后无任何反应</div>
+              <div>如果是一直都无响应, 那可能是兼容性问题, 在太低版本的浏览器中可能无法使用, 电脑上请使用最新谷歌浏览器，手机上可使用夸克浏览器</div>
             </div>
           </div>
         </div>

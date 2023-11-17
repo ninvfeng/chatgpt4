@@ -89,7 +89,7 @@ const handleChatCompletion = async(payload: HandlerPayload, signal?: AbortSignal
     apiKey: payload.globalSettings.apiKey as string,
     baseUrl: payload.globalSettings.baseUrl as string,
     body: {
-      model: payload.globalSettings.model as string,
+      model: 'gpt-4-1106-preview',
       messages: payload.messages,
       temperature: payload.globalSettings.temperature as number,
       max_tokens: (payload.globalSettings.maxTokens as number) >= 2000 ? undefined : (payload.globalSettings.maxTokens as number) * 2,

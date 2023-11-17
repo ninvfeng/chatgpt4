@@ -58,7 +58,7 @@ export default (props: Props) => {
 
   return (
     <div class="flex h-full">
-      <div class="flex flex-col w-full max-w-md mx-8 sm:mx-18">
+      <div class="flex flex-col w-full max-w-md px-8 sm:mx-18">
         <Show when={!props.isLogin()}>
           <div class="fi mt-12">
             <span class="text-(2xl transparent) font-extrabold bg-(clip-text gradient-to-r) from-sky-400 to-emerald-600">ChatGPT 4.0</span>
