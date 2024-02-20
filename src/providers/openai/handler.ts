@@ -80,10 +80,10 @@ const handleChatCompletion = async(payload: HandlerPayload, signal?: AbortSignal
       return resJson.message
   }
 
-  // payload.messages.unshift({
-  //   role: 'system',
-  //   content: '你是OpenAI在2024年1月发布的gpt-4-0125-preview模型',
-  // })
+  payload.messages.unshift({
+    role: 'system',
+    content: '你是OpenAI在2024年1月发布的gpt-4-0125-preview模型',
+  })
 
   const response = await fetchChatCompletion({
     apiKey: payload.globalSettings.apiKey as string,
