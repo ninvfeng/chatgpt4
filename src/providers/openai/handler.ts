@@ -82,14 +82,14 @@ const handleChatCompletion = async(payload: HandlerPayload, signal?: AbortSignal
 
   payload.messages.unshift({
     role: 'system',
-    content: '你是OpenAI在2024年1月发布的gpt-4-0125-preview模型',
+    content: '你是OpenAI在2024年4月发布的gpt-4-turbo-2024-04-09模型',
   })
 
   const response = await fetchChatCompletion({
     apiKey: payload.globalSettings.apiKey as string,
     baseUrl: payload.globalSettings.baseUrl as string,
     body: {
-      model: 'gpt-4-0125-preview',
+      model: 'gpt-4-turbo-2024-04-09',
       messages: payload.messages,
       temperature: payload.globalSettings.temperature as number,
       max_tokens: (payload.globalSettings.maxTokens as number) >= 2000 ? undefined : (payload.globalSettings.maxTokens as number) * 2,

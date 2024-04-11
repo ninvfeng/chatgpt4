@@ -208,7 +208,7 @@ export default (props: Props) => {
             <div class="font-bold text-gray-700 text-center">常见问题</div>
             <div>
               <div class="font-bold text-gray-700">1.这是真的GPT4吗</div>
-              <div>是的，默认使用最新的gpt-4-turbo(gpt-4-0125-preview)模型，它的知识库截止2023年4月，但你问它是GPT几的时候有可能它并不知道自己是GPT4，可以用一些经典逻辑题区分，如：爸爸妈妈结婚为什么没有邀请我？ 如果能回答到结婚时还没有出生就是GPT4, GPT3.5是回答不到这个点的</div>
+              <div>是的，默认使用最新的gpt-4-turbo(gpt-4-turbo-2024-04-09)模型，它的知识库截止2023年12月，但你问它是GPT几的时候有可能它并不知道自己是GPT4，可以用一些经典逻辑题区分，如：爸爸妈妈结婚为什么没有邀请我？ 如果能回答到结婚时还没有出生就是GPT4, GPT3.5是回答不到这个点的</div>
             </div>
 
             <div>
