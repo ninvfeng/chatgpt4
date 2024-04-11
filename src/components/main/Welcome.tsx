@@ -75,6 +75,10 @@ export default (props: Props) => {
             setUser={props.setUser}
             user={props.user}
           />
+
+          <div class="mt-4 text-gray-500 text-xs my-2">
+            站点模型已更新到2024年4月9号OpenAI最新发布的gpt-4-turbo-2024-04-09模型
+          </div>
           <div class="mt-2 px-6 py-4 bg-base-100 border border-base rounded-lg">
             <h2 class="text-xs op-30 uppercase my-2">{t('conversations.recent')}</h2>
             <div class="flex flex-col items-start">
