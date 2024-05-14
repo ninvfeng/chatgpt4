@@ -77,7 +77,7 @@ export default (props: Props) => {
           />
 
           <div class="mt-4 text-gray-500 text-xs my-2">
-            站点模型已更新到2024年5月13号OpenAI最新发布的gpt-4o(gpt-4o-2024-05-13)模型,速度飞快,性能更好
+            站点模型已更新到2024年5月13号OpenAI最新发布的gpt-4o(gpt-4o-2024-05-13)模型,速度飞快,性能更好,价格更便宜
           </div>
           <div class="mt-2 px-6 py-4 bg-base-100 border border-base rounded-lg">
             <h2 class="text-xs op-30 uppercase my-2">{t('conversations.recent')}</h2>
