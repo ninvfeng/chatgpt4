@@ -149,7 +149,7 @@ export default (props: Props) => {
           <div class="mt-4">
             <Show when={!url()}>
               <span class="text-sm">
-                请选择充值金额,GPT4按字数计费
+                请选择充值金额, GPT4按字数计费, 不限时间
               </span>
               <div class="grid grid-cols-2">
                 <Index each={payinfo()}>
@@ -212,12 +212,12 @@ export default (props: Props) => {
             <div class="font-bold text-gray-700 text-center">常见问题</div>
             <div>
               <div class="font-bold text-gray-700">1.这是真的GPT4吗</div>
-              <div>是的，默认使用最新的gpt-4-turbo(gpt4-1106-preview)模型，它的知识库截止2023年4月，但你问它是GPT几的时候有可能它并不知道自己是GPT4，可以用一些经典逻辑题区分，如：爸爸妈妈结婚为什么没有邀请我？ 如果能回答到结婚时你还没有出生就是GPT4, GPT3.5是回答不到这个点的</div>
+              <div>是的，默认使用OpenAI最新发布的gpt-4o(gpt-4o-2024-05-13)模型，它的知识库截止2023年10月，但你问它是GPT几的时候有可能它并不知道自己是GPT4，可以用一些经典逻辑题区分，如：爸爸妈妈结婚为什么没有邀请我？ 如果能回答到结婚时还没有出生就是GPT4, GPT3.5是回答不到这个点的</div>
             </div>
 
             <div>
               <div class="font-bold text-gray-700">2.为什么字数一下子消耗完了</div>
-              <div>非必要，请每个问题开新对话单独提问！连续对话可以理解上下文，但每次提问都需要带上前面所有的内容，所以前面内容会重复计算字数</div>
+              <div>非必要，请每个问题开新对话单独提问！连续对话时为了能理解上下文，每次提问都需要带上前面所有的内容，所以前面内容会重复计算字数; 另外,提问和回答都会计算字数</div>
             </div>
 
             <div>
