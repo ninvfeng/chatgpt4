@@ -205,6 +205,10 @@ export default (props: Props) => {
           </button>
 
           <div class="text-xs text-gray-600 space-y-2 mt-6">
+
+            <a href="/kefu" class="mt-4 w-40 text-sm rounded-md cursor-pointer border-b border-dashed">
+              使用遇到问题? 在线客服
+            </a>
             <div class="font-bold text-gray-700 text-center">常见问题</div>
             <div>
               <div class="font-bold text-gray-700">1.这是真的GPT4吗</div>

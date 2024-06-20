@@ -98,6 +98,11 @@ export default (props: Props) => {
             <div class="i-carbon-add" />
             <div class="flex-1 text-sm truncate">{t('conversations.add')}</div>
           </div>
+
+          <a href="/kefu" class="mt-4 w-40 op-60 text-sm rounded-md cursor-pointer border-b border-dashed">
+            使用遇到问题? 在线客服
+          </a>
+
         </Show>
       </div>
     </div>

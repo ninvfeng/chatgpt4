@@ -104,6 +104,11 @@ export default (props: Props) => {
       <button onClick={login} class="w-1/3 h-12 mt-2 px-4 py-2 bg-slate bg-op-15 hover:bg-op-20 rounded-sm">
         开启4.0
       </button>
+      <br />
+      <br />
+      <a href="/kefu" class="mt-4 w-40 op-60 text-sm rounded-md cursor-pointer border-b border-dashed">
+        使用遇到问题? 在线客服
+      </a>
 
       <Show when={code() !== ''}>
         <div class="op-60 py-4">
