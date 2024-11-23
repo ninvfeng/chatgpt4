@@ -102,7 +102,7 @@ export default (props: Props) => {
       </div>
 
       <button onClick={login} class="w-1/3 h-12 mt-2 px-4 py-2 bg-slate bg-op-15 hover:bg-op-20 rounded-sm">
-        开启4.0
+        开始使用
       </button>
       <br />
       <br />
