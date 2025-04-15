@@ -41,7 +41,7 @@ export default (props: Props) => {
             setSettingsByProviderId('provider-openai', {
               authToken: localStorage.getItem('token') as string,
               maxTokens: setting.maxTokens,
-              model: 'gpt-4o',
+              model: 'gpt-4.1',
               temperature: setting.temperature,
             })
           }, 1000)
@@ -77,7 +77,7 @@ export default (props: Props) => {
           />
 
           <div class="mt-4 text-gray-500 text-xs my-2">
-            站点模型已更新到 OpenAI 2024年11月最新发布的gpt-4o(gpt-4o-2024-11-20)模型
+            站点模型已更新到 OpenAI 2025年4月最新发布的gpt-4.1(gpt-4.1-2025-04-14)模型
           </div>
           <div class="mt-2 px-6 py-4 bg-base-100 border border-base rounded-lg">
             <h2 class="text-xs op-30 uppercase my-2">{t('conversations.recent')}</h2>
