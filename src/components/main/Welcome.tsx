@@ -41,7 +41,7 @@ export default (props: Props) => {
             setSettingsByProviderId('provider-openai', {
               authToken: localStorage.getItem('token') as string,
               maxTokens: setting.maxTokens,
-              model: 'gpt-4.1',
+              model: 'gpt-5',
               temperature: setting.temperature,
             })
           }, 1000)
@@ -61,7 +61,7 @@ export default (props: Props) => {
       <div class="flex flex-col w-full max-w-md px-8 sm:mx-18">
         <Show when={!props.isLogin()}>
           <div class="fi mt-12">
-            <span class="text-(2xl transparent) font-extrabold bg-(clip-text gradient-to-r) from-sky-400 to-emerald-600">ChatGPT 4.1</span>
+            <span class="text-(2xl transparent) font-extrabold bg-(clip-text gradient-to-r) from-sky-400 to-emerald-600">ChatGPT 5</span>
           </div>
           <div mt-1 op-60>欢迎来到人工智能时代</div>
           <div op-60>验证邮箱开始使用</div>
@@ -77,7 +77,7 @@ export default (props: Props) => {
           />
 
           <div class="mt-4 text-gray-500 text-xs my-2">
-            站点模型已更新到 OpenAI 2025年4月最新发布的gpt-4.1(gpt-4.1-2025-04-14)模型
+            站点模型已更新到 OpenAI 2025年8月最新发布的gpt-5(gpt-5-chat-latest)模型
           </div>
           <div class="mt-2 px-6 py-4 bg-base-100 border border-base rounded-lg">
             <h2 class="text-xs op-30 uppercase my-2">{t('conversations.recent')}</h2>

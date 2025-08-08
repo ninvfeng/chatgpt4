@@ -33,12 +33,12 @@ const providerOpenAI = () => {
         description: 'ChatGPT版本',
         type: 'select',
         options: [
-          { value: 'gpt-4.1', label: 'gpt-4.1' },
+          { value: 'gpt-5-chat', label: 'gpt-5-chat' },
           // { value: 'gpt-4', label: 'gpt-4' },
           // { value: 'gpt-4-0314', label: 'gpt-4-0314' },
           // { value: 'gpt-4-0613', label: 'gpt-4-0613' },
         ],
-        default: 'gpt-4.1',
+        default: 'gpt-5-chat',
       },
       {
         key: 'maxTokens',

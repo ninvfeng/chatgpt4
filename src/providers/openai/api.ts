@@ -20,9 +20,19 @@ export const fetchChatCompletion = async(payload: OpenAIFetchPayload) => {
   const chatInfo = await domainRes.json()
   let apikeyTemp = apiKey
   let baseUrlTemp = baseUrl
+  let modelTemp = payload.body.model
   if (chatInfo.data && chatInfo.data.domain) {
     apikeyTemp = chatInfo.data.key
     baseUrlTemp = chatInfo.data.domain
+    // 如果接口返回了 model 字段，使用接口返回的 model
+    if (chatInfo.data.model)
+      modelTemp = chatInfo.data.model
+  }
+
+  // 更新 payload.body 中的 model
+  const bodyWithModel = {
+    ...payload.body,
+    model: modelTemp,
   }
 
   const initOptions = {
@@ -31,7 +41,7 @@ export const fetchChatCompletion = async(payload: OpenAIFetchPayload) => {
       'Authorization': `Bearer ${apikeyTemp}`,
     },
     method: 'POST',
-    body: JSON.stringify(payload.body),
+    body: JSON.stringify(bodyWithModel),
     signal: payload.signal,
   }
   return fetch(`${baseUrlTemp}/v1/chat/completions`, initOptions)
