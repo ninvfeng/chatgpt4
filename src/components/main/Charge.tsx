@@ -149,7 +149,7 @@ export default (props: Props) => {
           <div class="mt-4">
             <Show when={!url()}>
               <span class="text-sm">
-                请选择充值金额, GPT4按字数计费, 不限时间
+                请选择充值金额, 不限时间
               </span>
               <div class="grid grid-cols-2">
                 <Index each={payinfo()}>
