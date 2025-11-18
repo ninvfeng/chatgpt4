@@ -42,7 +42,7 @@ export default (props: Props) => {
               authToken: localStorage.getItem('token') as string,
               maxTokens: setting.maxTokens,
               model: 'gpt-5.1-chat-latest',
-              temperature: setting.temperature,
+              temperature: 1,
             })
           }, 1000)
         } else {

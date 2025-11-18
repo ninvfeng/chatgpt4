@@ -31,3 +31,4 @@ pnpm-debug.log*
 .idea
 
 .history
+node-compile-cache
