@@ -82,14 +82,14 @@ const handleChatCompletion = async(payload: HandlerPayload, signal?: AbortSignal
 
   payload.messages.unshift({
     role: 'system',
-    content: '你是GPT-5 Chat，一种来自openai的大型语言模型。',
+    content: '你是GPT-5.1 Chat, 来自openai的大型语言模型。',
   })
 
   const response = await fetchChatCompletion({
     apiKey: payload.globalSettings.apiKey as string,
     baseUrl: payload.globalSettings.baseUrl as string,
     body: {
-      model: payload.globalSettings.model as string || 'gpt-5',
+      model: payload.globalSettings.model as string || 'gpt-5.1-chat-latest',
       messages: payload.messages,
       temperature: payload.globalSettings.temperature as number,
       max_tokens: (payload.globalSettings.maxTokens as number) >= 2000 ? undefined : (payload.globalSettings.maxTokens as number) * 2,
