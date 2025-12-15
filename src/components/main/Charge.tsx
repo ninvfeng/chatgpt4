@@ -212,7 +212,7 @@ export default (props: Props) => {
             <div class="font-bold text-gray-700 text-center">常见问题</div>
             <div>
               <div class="font-bold text-gray-700">1.这是真的GPT5吗</div>
-              <div>是的，默认使用OpenAI最新发布的gpt-5.1(gpt-5.1-chat-latest)模型</div>
+              <div>是的，默认使用OpenAI最新发布的gpt-5.2(gpt-5.2-chat-latest)模型</div>
             </div>
 
             <div>

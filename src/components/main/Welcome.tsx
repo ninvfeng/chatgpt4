@@ -41,7 +41,7 @@ export default (props: Props) => {
             setSettingsByProviderId('provider-openai', {
               authToken: localStorage.getItem('token') as string,
               maxTokens: setting.maxTokens,
-              model: 'gpt-5.1-chat-latest',
+              model: 'gpt-5.2-chat-latest',
               temperature: 1,
             })
           }, 1000)
@@ -77,7 +77,7 @@ export default (props: Props) => {
           />
 
           <div class="mt-4 text-gray-500 text-xs my-2">
-            站点模型已更新到 OpenAI 2025年11月最新发布的gpt-5.1(gpt-5.1-chat-latest)模型
+            站点模型已更新到 OpenAI 2025年11月最新发布的gpt-5.2(gpt-5.2-chat-latest)模型
           </div>
           <div class="mt-2 px-6 py-4 bg-base-100 border border-base rounded-lg">
             <h2 class="text-xs op-30 uppercase my-2">{t('conversations.recent')}</h2>

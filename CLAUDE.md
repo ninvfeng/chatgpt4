@@ -122,5 +122,5 @@ docker run -p 3000:3000 anse
 
 ## 重要配置
 - OpenAI 模型配置在 `src/providers/openai/index.ts` 中
-- 当前支持 gpt-5.1 模型
+- 当前支持 gpt-5.2 模型
 - 认证信息存储在 localStorage 中
