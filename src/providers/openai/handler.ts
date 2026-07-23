@@ -80,10 +80,10 @@ const handleChatCompletion = async(payload: HandlerPayload, signal?: AbortSignal
       return resJson.message
   }
 
-  payload.messages.unshift({
-    role: 'system',
-    content: '你是GPT-5.4, 来自openai的大型语言模型。',
-  })
+  // payload.messages.unshift({
+  //   role: 'system',
+  //   content: '你是GPT-5.4, 来自openai的大型语言模型。',
+  // })
 
   const response = await fetchChatCompletion({
     apiKey: payload.globalSettings.apiKey as string,
