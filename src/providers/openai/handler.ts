@@ -89,9 +89,9 @@ const handleChatCompletion = async(payload: HandlerPayload, signal?: AbortSignal
     apiKey: payload.globalSettings.apiKey as string,
     baseUrl: payload.globalSettings.baseUrl as string,
     body: {
-      model: payload.globalSettings.model as string || 'gpt-6-astra',
+      model: payload.globalSettings.model as string || 'gpt-6.1-sol',
       messages: payload.messages,
-      // gpt-6-astra 只接受默认 temperature(1),且不再支持 max_tokens,需用 max_completion_tokens
+      // 保留现有兼容参数: 不传 temperature/top_p,使用 max_completion_tokens
       max_completion_tokens: (payload.globalSettings.maxTokens as number) >= 2000 ? undefined : (payload.globalSettings.maxTokens as number) * 2,
       stream: payload.globalSettings.stream as boolean ?? true,
     },

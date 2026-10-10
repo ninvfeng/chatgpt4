@@ -41,7 +41,7 @@ export default (props: Props) => {
             setSettingsByProviderId('provider-openai', {
               authToken: localStorage.getItem('token') as string,
               maxTokens: setting.maxTokens,
-              model: 'gpt-6-astra',
+              model: 'gpt-6.1-sol',
               temperature: 1,
             })
           }, 1000)
@@ -61,7 +61,7 @@ export default (props: Props) => {
       <div class="flex flex-col w-full max-w-md px-8 sm:mx-18">
         <Show when={!props.isLogin()}>
           <div class="fi mt-12">
-            <span class="text-(2xl transparent) font-extrabold bg-(clip-text gradient-to-r) from-sky-400 to-emerald-600">ChatGPT 5</span>
+            <span class="text-(2xl transparent) font-extrabold bg-(clip-text gradient-to-r) from-sky-400 to-emerald-600">ChatGPT 6</span>
           </div>
           <div mt-1 op-60>欢迎来到人工智能时代</div>
           <div op-60>验证邮箱开始使用</div>
@@ -77,7 +77,7 @@ export default (props: Props) => {
           />
 
           <div class="mt-4 text-gray-500 text-xs my-2">
-            站点模型已更新到 OpenAI 最新发布的gpt-6-astra模型
+            站点模型已更新到 gpt-6.1-sol 模型
           </div>
           <div class="mt-2 px-6 py-4 bg-base-100 border border-base rounded-lg">
             <h2 class="text-xs op-30 uppercase my-2">{t('conversations.recent')}</h2>

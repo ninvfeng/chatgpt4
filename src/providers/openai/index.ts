@@ -33,12 +33,12 @@ const providerOpenAI = () => {
         description: 'ChatGPT版本',
         type: 'select',
         options: [
-          { value: 'gpt-6-astra', label: 'gpt-6-astra' },
+          { value: 'gpt-6.1-sol', label: 'gpt-6.1-sol' },
           // { value: 'gpt-4', label: 'gpt-4' },
           // { value: 'gpt-4-0314', label: 'gpt-4-0314' },
           // { value: 'gpt-4-0613', label: 'gpt-4-0613' },
         ],
-        default: 'gpt-6-astra',
+        default: 'gpt-6.1-sol',
       },
       {
         key: 'maxTokens',
